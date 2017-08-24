@@ -1,11 +1,9 @@
 title: Icarus' HomePage
 author: 赵何宇
 email: zhaoheyvv@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
- 稻花香里说丰年，听取人生经验 
 
 github_username:  zhaoheyv
-
+  
 permalink: /:year/:month/:title/
 timezone: Asia/Shanghai
 
