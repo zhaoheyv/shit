@@ -14,11 +14,7 @@ author: 赵何宇
 > 3.Sort both parts.
 
 #### 实现：
-
-~
-
-int quicksort(int arry[], int left, int right){
-	
+	int quicksort(int arry[], int left, int right){
 	if(left<right)
 	{
 		int left_index = left;
@@ -39,17 +35,15 @@ int quicksort(int arry[], int left, int right){
 		arry[left] = temp;
 		quicksort(arry, left, left_index - 1);
 		quicksort(arry, left_index + 1, right);
+        }
 
-~
 
 ### MergeSort
 #### 原理：
 
 #### 实现：
-
-~
-
-void mergeSort(int arry[], int length){
+` 
+   void mergeSort(int arry[], int length){
 	int index_x = 0;
 	int index_y = length/2;
 	int index_m =0;
@@ -79,5 +73,4 @@ void mergeSort(int arry[], int length){
 		}	
 	}
 }
-
-~
+`
