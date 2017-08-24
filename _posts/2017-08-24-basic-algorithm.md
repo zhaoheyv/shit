@@ -8,12 +8,15 @@ author: 赵何宇
 ### 快速排序
 #### 原理：
 > 1.Choose a pivot value.
+
 > 2.Partition. 
+
 > 3.Sort both parts.
 
 #### 实现：
 
 ~
+
 int quicksort(int arry[], int left, int right){
 	
 	if(left<right)
@@ -36,6 +39,7 @@ int quicksort(int arry[], int left, int right){
 		arry[left] = temp;
 		quicksort(arry, left, left_index - 1);
 		quicksort(arry, left_index + 1, right);
+
 ~
 
 ### MergeSort
@@ -44,6 +48,7 @@ int quicksort(int arry[], int left, int right){
 #### 实现：
 
 ~
+
 void mergeSort(int arry[], int length){
 	int index_x = 0;
 	int index_y = length/2;
@@ -74,4 +79,5 @@ void mergeSort(int arry[], int length){
 		}	
 	}
 }
+
 ~
