@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <div id="post-title" itemprop="name headline">{{ page.title }}</div>
+    <p class="post-meta">作者 <span itemprop="name">{{ page.author }}</span> | 发布于 <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %}</span>{% endif %}</p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    {{ content }}
+    {% include comment.html %}
+  </div>
+<div>
+</div>
+</article>
+
+<div id="backtop">
+   <a href="#">TOP</a>
+</div> 
