@@ -1,9 +1,10 @@
 title: Icarus' HomePage
 author: 赵何宇
 email: zhaoheyvv@gmail.com
-
+description: > # this means to ignore newlines until "baseurl:"
+  若将富贵比痴顽，一在平地一在天。
+  若将贫贱比车马，他得驱驰我得闲。
 github_username:  zhaoheyv
-  
 permalink: /:year/:month/:title/
 timezone: Asia/Shanghai
 
