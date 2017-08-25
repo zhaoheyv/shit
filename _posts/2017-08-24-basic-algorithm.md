@@ -5,16 +5,21 @@ author: 赵何宇
 ---
 
 ## 排序
-### 快速排序
+
+### QuickSort
+
 #### 原理：
-> 1.Choose a pivot value.
 
-> 2.Partition. 
-
-> 3.Sort both parts.
+> Choose a pivot value.
+> Partition. 
+> Sort both parts.
 
 #### 实现：
-	int quicksort(int arry[], int left, int right){
+
+```
+int quicksort(int arry[], int left, int right)
+{
+	
 	if(left<right)
 	{
 		int left_index = left;
@@ -35,15 +40,25 @@ author: 赵何宇
 		arry[left] = temp;
 		quicksort(arry, left, left_index - 1);
 		quicksort(arry, left_index + 1, right);
-        }
 
+    } 
+    return 0;
+}
+
+```
 
 ### MergeSort
+
 #### 原理：
 
+> Divide the unsorted list into n sublists, each containing 1 element (a list of 1 element is considered sorted).
+> Repeatedly merge sublists to produce new sorted sublists until there is only 1 sublist remaining. This will be the sorted list.
+
 #### 实现：
-` 
-   void mergeSort(int arry[], int length){
+
+```
+
+void mergeSort(int arry[], int length){
 	int index_x = 0;
 	int index_y = length/2;
 	int index_m =0;
@@ -73,4 +88,5 @@ author: 赵何宇
 		}	
 	}
 }
-`
+
+```
