@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: 关于
 author: 赵何宇
 permalink: /about/
 ---
