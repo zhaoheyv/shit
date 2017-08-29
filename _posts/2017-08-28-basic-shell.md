@@ -42,31 +42,29 @@ shell变量是由shell程序设置的特殊变量。shell变量中有一部分�
 
 1. 获取字符串长度  ${#var}
 2. 查找字符串 
-
 ```
-     animal="dog, pig, cat, lion and so on"  
-      
-     echo `expr index "$animal" cat`  
+animal="dog, pig, cat, lion and so on"     
+echo `expr index "$animal" cat`
 ```
-
 3. = 和 != 判断俩个字符串是否相等;
 4. -z 、 -n 或者直接将字符串代入 判断字符串长度是否为零（-z当字符串长度为0返回 true）
 
 #### 文件测试运算符
-
-* -b file 	检测文件是否是块设备文件，如果是，则返回 true。
-* -c file 	检测文件是否是字符设备文件，如果是，则返回 true
-* -d file 	检测文件是否是目录，如果是，则返回 true。
-* -f file 	检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。
-* -g file 	检测文件是否设置了 SGID 位，如果是，则返回 true。
-* -k file 	检测文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true。
-* -p file 	检测文件是否是具名管道，如果是，则返回 true。
-* -u file 	检测文件是否设置了 SUID 位，如果是，则返回 true。
-* -r file 	检测文件是否可读，如果是，则返回 true。
-* -w file 	检测文件是否可写，如果是，则返回 true。
-* -x file 	检测文件是否可执行，如果是，则返回 true。
-* -s file 	检测文件是否为空（文件大小是否大于0），不为空返回 true。
-* -e file 	检测文件（包括目录）是否存在，如果是，则返回 true。
+| 运算符 	| 说明 	|
+| ---- | ----------------------------------------------------------------- |
+| -b file |	检测文件是否是块设备文件，如果是，则返回 true。|
+| -c file |	检测文件是否是字符设备文件，如果是，则返回 true |
+| -d file |	检测文件是否是目录，如果是，则返回 true。|
+| -f file |	检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。|
+| -g file |	检测文件是否设置了 SGID 位，如果是，则返回 true。|
+| -k file |	检测文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true。|
+| -p file |	检测文件是否是具名管道，如果是，则返回 true。|
+| -u file |	检测文件是否设置了 SUID 位，如果是，则返回 true。|
+| -r file |	检测文件是否可读，如果是，则返回 true。|
+| -w file |	检测文件是否可写，如果是，则返回 true。|
+| -x file |	检测文件是否可执行，如果是，则返回 true。|
+| -s file |	检测文件是否为空（文件大小是否大于0），不为空返回 true。|
+| -e file |	检测文件（包括目录）是否存在，如果是，则返回 true。|
 
 
 
