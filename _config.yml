@@ -1,9 +1,8 @@
-title: Icarus' HomePage
+title: 赵大叔的学习笔记
 author: 赵何宇
 email: zhaoheyvv@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  若将富贵比痴顽，一在平地一在天。
-  若将贫贱比车马，他得驱驰我得闲。
+  The light which puts out our eyes is darkness to us. Only that day dawns to which we are awake. There is more day to dawn. The sun is but a morning star.
 github_username:  zhaoheyv
 permalink: /:year/:month/:title/
 timezone: Asia/Shanghai
