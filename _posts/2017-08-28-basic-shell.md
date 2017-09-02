@@ -4,7 +4,7 @@ title : Linux Shell
 author: 赵何宇
 ---
 
-> Linux下shell的学习笔记,随学随记,参考了[runoob网站](http://www.runoob.com/linux/linux-shell.html)，和[zhihu](https://www.zhihu.com/question/21281304)
+> Linux下shell的学习笔记,随学随记,参考了[runoob](http://www.runoob.com/linux/linux-shell.html)和[知乎](https://www.zhihu.com/question/21281304)
 
 #### shell 变量：
 shell变量是由shell程序设置的特殊变量。shell变量中有一部分是环境变量，有一部分是局部变量，这些变量保证了shell的正常运行
@@ -50,6 +50,7 @@ echo `expr index "$animal" cat`
 4. -z 、 -n 或者直接将字符串代入 判断字符串长度是否为零（-z当字符串长度为0返回 true）
 
 #### 文件测试运算符
+
 
 #### 流程控制
 
@@ -115,3 +116,26 @@ case 值 in
     ;;
 esac
 ```
+#### Shell函数
+
+```
+[ function ] funname [()]
+{
+    action;
+
+    [return int;]
+}
+```
+1.可以带function fun() 定义，也可以直接fun() 定义,不带任何参数。
+2.参数返回，可以显示加：return 返回，如果不加，将以最后一条命令运行结果，作为返回值。 return后跟数值n(0-255)
+3. 函数返回值在调用该函数后通过 $? 来获得。所有函数在使用前必须定义。这意味着必须将函数放在脚本开始部分，直至shell解释器首次发现它时，才可以使用。调用函数仅使用其函数名即可。 
+4,调用函数时可以向其传递参数。在函数体内部，通过 $n 的形式来获取参数的值，例如，$1表示第一个参数，$2表示第二个参数... 
+
+#### 重定向
+
+
+
+
+
+
+
