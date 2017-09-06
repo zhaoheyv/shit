@@ -5,7 +5,7 @@ author: 赵何宇
 ---
 
 > Linux下shell的学习笔记,随学随记,参考了[runoob](http://www.runoob.com/linux/linux-shell.html)和[zhihu](https://www.zhihu.com/question/21281304)
-
+> 另外參考[Shell編程範例](https://tinylab.gitbooks.io/shellbook/)
 #### shell 变量：
 shell变量是由shell程序设置的特殊变量。shell变量中有一部分是环境变量，有一部分是局部变量，这些变量保证了shell的正常运行
 
