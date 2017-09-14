@@ -1,6 +1,6 @@
 ---
 layout: post
-title : Linux Shell
+title : Shell
 author: 赵何宇
 ---
 
