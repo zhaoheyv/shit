@@ -27,10 +27,17 @@ ntohs()--"Network to Host Short" ; ntohl()--"Network to Host Long"
 
 #### socket()函数
 
+```
+int socket(int family, int type, int protocol);
+```
 
+family指定协议族；type参数指定socket的类型：SOCK_STREAM、SOCK_DGRAM、SOCK_RAW；protocol通常赋值"0"。
+socket()调用返回一个整型socket描述符，你可以在后面的调用使用它。 一旦通过socket调用返回一个socket描述符，你应该将该socket与你本机上的一个端口相关联（往往当你在设计服务器端程序时需要。随后你就可以在该端口监听服务请求;而客户端一般无须调用该函数）。
 
 #### bind()函数
-
+```
+int bind(int sockfd, struct sockaddr *my_addr, int addrlen); 
+```
 #### listen()、connect()函数
 
 #### accept()函数
