@@ -29,6 +29,8 @@ ntohs()--"Network to Host Short" ; ntohl()--"Network to Host Long"
 
 ```
 int socket(int family, int type, int protocol);
+
+unsigned int sockSrv = socket(AF_INET, SOCK_STREAM, 0);
 ```
 
 family指定协议族；type参数指定socket的类型：SOCK_STREAM、SOCK_DGRAM、SOCK_RAW；protocol通常赋值"0"。
@@ -37,8 +39,30 @@ socket()调用返回一个整型socket描述符，你可以在后面的调用使
 #### bind()函数
 ```
 int bind(int sockfd, struct sockaddr *my_addr, int addrlen); 
+
+ret = bind(sockfd, (SOCKADDR*)&sockaddr, sizeof(SOCKADDR)); 
+
+//defines the sockaddr struct as follows:
+
+struct sockaddr {
+    u_short sa_family;              /* address family */
+    char    sa_data[14];            /* up to 14 bytes of direct address */
+};
+
+struct sockaddr_in {
+	short int sin_family; // Address family, AF_INET
+	unsigned short int sin_port; // Port number
+	struct in_addr sin_addr; // Internet address
+	unsigned char sin_zero[8]; // Same size as struct sockaddr
+};
+
 ```
-#### listen()、connect()函数
+sockfd 为绑定的socket描述符，函数返回值0，-1(操作失败)，和通常的调用方式中包含的类型转换。
+sockaddr_in 也是16Byte的结构，指针位置一样所以就可以相互转换。
+
+#### listen() 函数
+
+#### connect()函数
 
 #### accept()函数
 
