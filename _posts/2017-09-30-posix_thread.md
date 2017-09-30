@@ -1,6 +1,6 @@
 ---
 layout: post
-title : POSIX线程相关基础知识
+title : POSIX线程
 author: 赵何宇
 ---
 
@@ -28,3 +28,5 @@ int pthread_setcanceltype(int type, int *oldtype);
 void pthread_testcancel(void); 
 /*检查本线程是否处于Canceld状态，如果是，则进行取消动作，否则直接返回。*/
 ```
+###### 互斥对象(mutex)
+
