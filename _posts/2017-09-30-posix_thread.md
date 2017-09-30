@@ -17,6 +17,7 @@ author: 赵何宇
 ```
 int  pthread_create(pthread_t  *  thread, pthread_attr_t * attr, void * (*start_routine)(void *), void * arg)
 ```
+pthread_t 类型在 pthread.h 中定义，通常称为“线程 id”（缩写为 "tid"）。可以认为它是一种线程句柄。
 ###### 线程取消函数
 ```
 int pthread_cancel(pthread_t thread);
@@ -29,4 +30,6 @@ void pthread_testcancel(void);
 /*检查本线程是否处于Canceld状态，如果是，则进行取消动作，否则直接返回。*/
 ```
 ###### 互斥对象(mutex)
+A mutex is a lockable object that is designed to signal when critical sections of code need exclusive access, preventing other threads with the same protection from executing concurrently and access the same memory locations.
 
+互斥对象是这样工作的:如果线程 a 试图锁定一个互斥对象，而此时线程 b 已锁定了同一个互斥对象时，线程 a 就将进入睡眠状态。一旦线程 b 释放了互斥对象（通过 pthread_mutex_unlock() 调用），线程 a 就能够锁定这个互斥对象（换句话说，线程 a 就将从 pthread_mutex_lock() 函数调用中返回，同时互斥对象被锁定）。同样地，当线程 a 正锁定互斥对象时，如果线程 c 试图锁定互斥对象的话，线程 c 也将临时进入睡眠状态。对已锁定的互斥对象上调用 pthread_mutex_lock() 的所有线程都将进入睡眠状态，这些睡眠的线程将“排队”访问这个互斥对象。
