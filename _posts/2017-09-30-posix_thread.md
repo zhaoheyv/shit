@@ -17,3 +17,14 @@ author: 赵何宇
 ```
 int  pthread_create(pthread_t  *  thread, pthread_attr_t * attr, void * (*start_routine)(void *), void * arg)
 ```
+###### 线程取消函数
+```
+int pthread_cancel(pthread_t thread);
+/*发送终止信号给thread线程，如果成功则返回0，否则为非0值。发送成功并不意味着thread会终止。*/
+int pthread_setcancelstate(int state, int *oldstate); 
+/*设置本线程对Cancel信号的反应，state有两种值：PTHREAD_CANCEL_ENABLE（缺省）和PTHREAD_CANCEL_DISABLE，分别表示收到信号后设为CANCLED状态和忽略CANCEL信号继续运行；old_state如果不为NULL则存入原来的Cancel状态以便恢复。*/
+int pthread_setcanceltype(int type, int *oldtype); 
+/*设置本线程取消动作的执行时机，type由两种取值：PTHREAD_CANCEL_DEFFERED和PTHREAD_CANCEL_ASYCHRONOUS，仅当Cancel状态为Enable时有效，分别表示收到信号后继续运行至下一个取消点再退出和立即执行取消动作（退出）；oldtype如果不为NULL则存入运来的取消动作类型值。*/
+void pthread_testcancel(void); 
+/*检查本线程是否处于Canceld状态，如果是，则进行取消动作，否则直接返回。*/
+```
