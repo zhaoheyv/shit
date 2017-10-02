@@ -33,3 +33,10 @@ void pthread_testcancel(void);
 A mutex is a lockable object that is designed to signal when critical sections of code need exclusive access, preventing other threads with the same protection from executing concurrently and access the same memory locations.
 
 互斥对象是这样工作的:如果线程 a 试图锁定一个互斥对象，而此时线程 b 已锁定了同一个互斥对象时，线程 a 就将进入睡眠状态。一旦线程 b 释放了互斥对象（通过 pthread_mutex_unlock() 调用），线程 a 就能够锁定这个互斥对象（换句话说，线程 a 就将从 pthread_mutex_lock() 函数调用中返回，同时互斥对象被锁定）。同样地，当线程 a 正锁定互斥对象时，如果线程 c 试图锁定互斥对象的话，线程 c 也将临时进入睡眠状态。对已锁定的互斥对象上调用 pthread_mutex_lock() 的所有线程都将进入睡眠状态，这些睡眠的线程将“排队”访问这个互斥对象。
+
+通常使用 pthread_mutex_lock() 和 pthread_mutex_unlock() 来保护数据结构。这就是说，通过线程的锁定和解锁，对于某一数据结构，确保某一时刻只能有一个线程能够访问它。可以推测到，当线程试图锁定一个未加锁的互斥对象时，POSIX 线程库将同意锁定，而不会使线程进入睡眠状态。
+
+```
+pthread_mutex_t mymutex=PTHREAD_MUTEX_INITIALIZER;
+int pthread_mutex_init( pthread_mutex_t *mymutex, const pthread_mutexattr_t *attr)
+```
