@@ -78,7 +78,7 @@ main(){
 }
 ~~~
 exit系统调用带有一个整数类型的参数status，我们可以利用这个参数传递进程结束时的状态，比如说，该进程是正常结束的，还是出现某种意外而结束的
-!exit和_exit](https://www.ibm.com/developerworks/cn/linux/kernel/syscall/part2/1_1.JPG)
+![exit和_exit区别](https://www.ibm.com/developerworks/cn/linux/kernel/syscall/part2/1_1.JPG)
 
 ###### wait
 
