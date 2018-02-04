@@ -81,7 +81,98 @@ exit系统调用带有一个整数类型的参数status，我们可以利用这�
 ![exit和_exit区别](https://www.ibm.com/developerworks/cn/linux/kernel/syscall/part2/1_1.JPG)
 
 ###### wait
+wait的函数原型是：
+~~~
+#include <sys/types.h> /* 提供类型pid_t的定义 */
+#include <sys/wait.h>
+pid_t wait(int *status)
+~~~
+进程一旦调用了wait，就立即阻塞自己，由wait自动分析是否当前进程的某个子进程已经退出，如果让它找到了这样一个已经变成僵尸的子进程，wait就会收集这个子进程的信息，并把它彻底销毁后返回；如果没有找到这样一个子进程，wait就会一直阻塞在这里，直到有一个出现为止。
 
+参数status用来保存被收集进程退出时的一些状态，它是一个指向int类型的指针。但如果我们对这个子进程是如何死掉的毫不在意，只想把这个僵尸进程消灭掉，（事实上绝大多数情况下，我们都会这样想），我们就可以设定这个参数为NULL，就象下面这样：
+~~~
+pid = wait(NULL);
+~~~
+如果成功，wait会返回被收集的子进程的进程ID，如果调用进程没有子进程，调用就会失败，此时wait返回-1，同时errno被置为ECHILD。
+###### 进程同步
+比如说父进程等待子进程结束。
+~~~
+#include <sys/types.h>
+#include <sys/wait.h>
+main()
+{
+    pid_t pc, pr;
+    int status;
+
+    pc=fork();
+
+    if(pc<0)
+        printf("Error occured on forking.\n");
+    else if(pc==0){
+        /* 子进程的工作 */
+        exit(0);
+    }else{
+        /* 父进程的工作 */
+        pr=wait(&status); //阻塞在这里
+        /* 利用子进程的结果 */
+    }
+}
+~~~
 ###### waidpid
-
+waitpid多出了两个可由用户控制的参数pid和options。
+waitpid系统调用在Linux函数库中的原型是：
+~~~
+#include <sys/types.h> /* 提供类型pid_t的定义 */
+#include <sys/wait.h>
+pid_t waitpid(pid_t pid,int *status,int options)
+~~~
 ###### exec
+exec指的是一组函数，一共有6个，分别是：
+~~~
+#include <unistd.h>
+int execl(const char *path, const char *arg, ...);
+int execlp(const char *file, const char *arg, ...);
+int execle(const char *path, const char *arg, ..., char *const envp[]);
+int execv(const char *path, char *const argv[]);
+int execvp(const char *file, char *const argv[]);
+int execve(const char *path, char *const argv[], char *const envp[]);
+~~~
+exec函数族的作用是根据指定的文件名找到可执行文件，并用它来取代调用进程的内容，换句话说，就是在调用进程内部执行一个可执行文件。这里的可执行文件既可以是二进制文件，也可以是任何Linux下可执行的脚本文件。
+exec函数族的函数执行成功后不会返回，只有调用失败了，它们才会返回一个-1，从原程序的调用点接着往下执行。
+~~~
+int execve(const char *path, char *const argv[], char *const envp[])
+int main(int argc, char *argv[], char *envp[])
+~~~
+DEMO:
+~~~
+/* exec.c */
+#include <unistd.h>
+main()
+{
+    char *envp[]={"PATH=/tmp",
+            "USER=lei",
+            "STATUS=testing",
+            NULL};
+    char *argv_execv[]={"echo", "excuted by execv", NULL};
+    char *argv_execvp[]={"echo", "executed by execvp", NULL};
+    char *argv_execve[]={"env", NULL};
+    if(fork()==0)
+        if(execl("/bin/echo", "echo", "executed by execl", NULL)<0)
+            perror("Err on execl");
+    if(fork()==0)
+        if(execlp("echo", "echo", "executed by execlp", NULL)<0)
+            perror("Err on execlp");
+    if(fork()==0)
+        if(execle("/usr/bin/env", "env", NULL, envp)<0)
+            perror("Err on execle");
+    if(fork()==0)
+        if(execv("/bin/echo", argv_execv)<0)
+            perror("Err on execv");
+    if(fork()==0)
+        if(execvp("echo", argv_execvp)<0)
+            perror("Err on execvp");
+    if(fork()==0)
+        if(execve("/usr/bin/env", argv_execve, envp)<0)
+            perror("Err on execve");
+}
+~~~
